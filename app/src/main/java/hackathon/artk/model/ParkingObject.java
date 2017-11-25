@@ -1,4 +1,4 @@
-package hackathon.artk;
+package hackathon.artk.model;
 
 /**
  * Created by thtuan on 11/25/17.

@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import hackathon.artk.model.LatLngObj;
+import hackathon.artk.model.ModelParkings;
+import hackathon.artk.model.ParkingObject;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
