@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-
+import android.util.Log;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,8 +15,11 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -25,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   private LatLngObj latLngObj;
   private LatLngObj latLngObj2;
   LatLng sydney;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -33,9 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
         .findFragmentById(R.id.map);
     mapFragment.getMapAsync(this);
-    modelParkings = new ModelParkings();
-    latLngObj = new LatLngObj();
-    latLngObj2 = new LatLngObj();
+
   }
 
 
@@ -51,7 +53,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   @Override
   public void onMapReady(GoogleMap googleMap) {
     mMap = googleMap;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("parking");
 
+    myRef.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        // This method is called once with the initial value and again
+        // whenever data at this location is updated.
+        ModelParkings modelParkings = dataSnapshot.getValue(ModelParkings.class);
+        Log.d("Get data success", "Value is: " + dataSnapshot);
+        for (ParkingObject parkingObject : modelParkings.getParking()){
+          LatLng sydney = new LatLng(parkingObject.getLat(), parkingObject.getLng());
+          mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "
+              + parkingObject.getName()));
+        }
+
+      }
+
+      @Override
+      public void onCancelled(DatabaseError error) {
+        // Failed to read value
+        Log.w("Get data fail", "Failed to read value.", error.toException());
+      }
+    });
 
     // circle settings
     int radiusM = 150; // your radius in meters
@@ -73,24 +98,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //    LatLng sydney = new LatLng(-34, 151);
 //    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "
 //        + "Sydney").icon(bmD));
-
-
-    ArrayList<LatLngObj> arrLatLng = new ArrayList<>();
-    latLngObj.setLat(10.7740504);
-    latLngObj.setLng(106.6923693);
-    latLngObj2.setLat(10.7767632);
-    latLngObj2.setLng(106.693917);
-    arrLatLng.add(latLngObj);
-    arrLatLng.add(latLngObj2);
-    for(int i = 0; i< arrLatLng.size();i++){
-//      arrLatLng.add(latLngObj);
-      modelParkings.setLatLng(arrLatLng);
-      sydney = new LatLng(modelParkings.getLatLng().get(i).getLat(), modelParkings.getLatLng().get(i).getLng());
-      mMap.addMarker(new MarkerOptions()
-              .position(sydney)
-              .title("LinkedIn")
-              .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-    }
 
 
     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,16));

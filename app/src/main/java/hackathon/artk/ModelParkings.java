@@ -1,49 +1,21 @@
 package hackathon.artk;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by huuth on 11/25/2017.
  */
 
 public class ModelParkings {
-    String name;
-    ArrayList<LatLngObj> latLng;
-    String space;
-    String full;
 
-    public ModelParkings() {
-    }
+  private List<ParkingObject> parking = new ArrayList<>();
 
-    public String getName() {
-        return name;
-    }
+  public List<ParkingObject> getParking() {
+    return parking;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ArrayList<LatLngObj> getLatLng() {
-        return latLng;
-    }
-
-    public void setLatLng(ArrayList<LatLngObj> latLng) {
-        this.latLng = latLng;
-    }
-
-    public String getSpace() {
-        return space;
-    }
-
-    public void setSpace(String space) {
-        this.space = space;
-    }
-
-    public String getFull() {
-        return full;
-    }
-
-    public void setFull(String full) {
-        this.full = full;
-    }
+  public void setParking(List<ParkingObject> parking) {
+    this.parking = parking;
+  }
 }
