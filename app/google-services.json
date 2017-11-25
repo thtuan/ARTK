@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "935090625370",
+    "firebase_url": "https://piggy-chat.firebaseio.com",
+    "project_id": "piggy-chat",
+    "storage_bucket": "piggy-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935090625370:android:8448f8e6ea01e769",
+        "android_client_info": {
+          "package_name": "hackathon.artk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935090625370-qjm54pemprvhhvnjchrcjkg660rdic7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRDXeXY3-eq9tGHga_KRBPLiMbEeT9rjA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
