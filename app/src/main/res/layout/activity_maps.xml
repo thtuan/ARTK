@@ -1,7 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:map="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="hackathon.artk.MapsActivity">
@@ -9,6 +8,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map"/>
-
-</LinearLayout>
+  <Button
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/info"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:onClick="info"/>
+  <Button
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:id="@+id/toggle"
+    android:background="@drawable/barchart"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="70dp"
+    android:onClick="toggle"/>
+</RelativeLayout>
 

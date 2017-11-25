@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'com.github.kt3k.coveralls'
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
@@ -31,6 +31,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(':library')
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -39,7 +40,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.google.firebase:firebase-database:11.6.0'
     compile 'com.github.aminyazdanpanah:google-maps-3D-pie-chart-marker-clustering-java:v1.2'
-    compile project(':demo')
+    compile 'com.google.maps.android:android-maps-utils:0.5'
 }
 //coveralls {
 //    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
