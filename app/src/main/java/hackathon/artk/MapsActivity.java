@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,10 +16,15 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
   private GoogleMap mMap;
-
+  private ModelParkings modelParkings;
+  private LatLngObj latLngObj;
+  private LatLngObj latLngObj2;
+  LatLng sydney;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -27,6 +33,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
         .findFragmentById(R.id.map);
     mapFragment.getMapAsync(this);
+    modelParkings = new ModelParkings();
+    latLngObj = new LatLngObj();
+    latLngObj2 = new LatLngObj();
   }
 
 
@@ -50,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double longitude = 151;// your center longitude
 
     // draw circle
-    int d = 500; // diameter
+    int d = 10; // diameter
     Bitmap bm = Bitmap.createBitmap(d, d, Config.ARGB_8888);
     Canvas c = new Canvas(bm);
     Paint p = new Paint();
@@ -61,9 +70,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BitmapDescriptor bmD = BitmapDescriptorFactory.fromBitmap(bm);
 
     // Add a marker in Sydney and move the camera
-    LatLng sydney = new LatLng(-34, 151);
-    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "
-        + "Sydney").icon(bmD));
-    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//    LatLng sydney = new LatLng(-34, 151);
+//    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "
+//        + "Sydney").icon(bmD));
+
+
+    ArrayList<LatLngObj> arrLatLng = new ArrayList<>();
+    latLngObj.setLat(10.7740504);
+    latLngObj.setLng(106.6923693);
+    latLngObj2.setLat(10.7767632);
+    latLngObj2.setLng(106.693917);
+    arrLatLng.add(latLngObj);
+    arrLatLng.add(latLngObj2);
+    for(int i = 0; i< arrLatLng.size();i++){
+//      arrLatLng.add(latLngObj);
+      modelParkings.setLatLng(arrLatLng);
+      sydney = new LatLng(modelParkings.getLatLng().get(i).getLat(), modelParkings.getLatLng().get(i).getLng());
+      mMap.addMarker(new MarkerOptions()
+              .position(sydney)
+              .title("LinkedIn")
+              .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+    }
+
+
+    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,16));
+    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,16));
+
   }
 }
