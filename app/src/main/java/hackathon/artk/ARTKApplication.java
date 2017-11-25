@@ -1,6 +1,7 @@
 package hackathon.artk;
 
 import android.app.Application;
+
 import com.google.firebase.FirebaseApp;
 
 /**
@@ -13,6 +14,6 @@ public class ARTKApplication  extends Application{
   @Override
   public void onCreate() {
     super.onCreate();
-    FirebaseApp.initializeApp(getApplicationContext());
+    FirebaseApp.initializeApp(this);
   }
 }

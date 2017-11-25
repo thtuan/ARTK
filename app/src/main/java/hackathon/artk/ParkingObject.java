@@ -12,6 +12,9 @@ public class ParkingObject {
   private int filled;
   private int full;
 
+  public ParkingObject() {
+  }
+
   public String getName() {
     return name;
   }
@@ -50,5 +53,16 @@ public class ParkingObject {
 
   public void setFull(int full) {
     this.full = full;
+  }
+
+  @Override
+  public String toString() {
+    return "ParkingObject{" +
+            "name='" + name + '\'' +
+            ", lat=" + lat +
+            ", lng=" + lng +
+            ", filled=" + filled +
+            ", full=" + full +
+            '}';
   }
 }

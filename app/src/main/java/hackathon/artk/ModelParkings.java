@@ -11,6 +11,9 @@ public class ModelParkings {
 
   private List<ParkingObject> parking = new ArrayList<>();
 
+  public ModelParkings() {
+  }
+
   public List<ParkingObject> getParking() {
     return parking;
   }
