@@ -168,7 +168,8 @@ public class MapActivity extends BaseMapActivity implements ClusterManager.OnClu
 
   @Override
   protected void startDemo() {
-    getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(32.988612, 53.459411), 4.5f));
+    getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(11.032492, 106.659586), 12));
+    getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(11.032492, 106.659586), 12));
 
     mClusterManager = new ClusterManager<>(this, getMap());
     mClusterManager.setRenderer(new AssetRenderer());
