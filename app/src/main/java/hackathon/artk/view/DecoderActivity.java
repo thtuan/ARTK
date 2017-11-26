@@ -81,7 +81,7 @@ public class DecoderActivity extends AppCompatActivity
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
     @Override public void onQRCodeRead(String text, PointF[] points) {
-        resultTextView.setText(text);
+        resultTextView.setText("Đã thanh toán thành công!");
         pointsOverlayView.setPoints(points);
     }
 
