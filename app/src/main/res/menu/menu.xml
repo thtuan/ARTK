@@ -3,12 +3,12 @@
  <group >
    <item android:id="@+id/location"
      android:title="Find parking lots"
-     android:icon="@drawable/active"/>
+     android:icon="@drawable/car"/>
    <item android:id="@+id/charge"
      android:title="Charge"
-     android:icon="@drawable/active"/>
+     android:icon="@drawable/payment"/>
    <item android:id="@+id/management"
      android:title="Management"
-     android:icon="@drawable/active"/>
+     android:icon="@drawable/comment"/>
  </group>
 </menu>

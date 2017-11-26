@@ -7,29 +7,39 @@
   android:paddingBottom="4dp"
   android:paddingLeft="4dp"
   android:paddingRight="4dp"
-  android:background="@android:color/holo_green_light"
+  android:background="#323a44"
   android:gravity="bottom"
-  android:orientation="vertical"
+  android:orientation="horizontal"
   android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
   <ImageView
     android:id="@+id/imageView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
     android:paddingTop="4dp"
-    app:srcCompat="@android:drawable/sym_def_app_icon"/>
-
+    app:srcCompat="@drawable/user"/>
+<LinearLayout
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="4dp"
-    android:text="Android Studio"
+    android:textColor="#78909d"
+    android:text="ARTK"
+    android:textSize="24sp"
+    android:textStyle="bold"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
   <TextView
     android:id="@+id/textView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="android.studio@android.com"/>
+    android:textColor="#2798f7"
+    android:textSize="20sp"
+    android:text="+84 934 3773 74"/>
+</LinearLayout>
+
 
 </LinearLayout>

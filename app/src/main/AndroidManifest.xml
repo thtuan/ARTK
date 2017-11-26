@@ -55,6 +55,7 @@
         </activity>
         <activity android:name=".view.DecoderActivity">
         </activity>
+      <activity android:name=".view.StreamActivity"></activity>
     </application>
 
 

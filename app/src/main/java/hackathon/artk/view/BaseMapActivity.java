@@ -2,6 +2,7 @@ package hackathon.artk.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -19,8 +20,11 @@ import hackathon.artk.R;
 
 public abstract class BaseMapActivity extends FragmentActivity implements OnMapReadyCallback,
     OnNavigationItemSelectedListener {
+
   private GoogleMap mMap;
   private DrawerLayout drawerLayout;
+  NavigationView navigationView;
+
   protected int getLayoutId() {
     return R.layout.activity_maps;
   }
@@ -30,7 +34,10 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
     super.onCreate(savedInstanceState);
     setContentView(getLayoutId());
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    navigationView = (NavigationView) findViewById(R.id.nav_view);
+    navigationView.setNavigationItemSelectedListener(this);
     setUpMap();
+
   }
 
   @Override
@@ -71,7 +78,8 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
 
       // Handle the camera action
     } else if (id == R.id.charge) {
-
+      Intent intent = new Intent(this, DecoderActivity.class);
+      startActivity(intent);
     } else if (id == R.id.management) {
       Intent intent = new Intent(this, StreamActivity.class);
       startActivity(intent);
