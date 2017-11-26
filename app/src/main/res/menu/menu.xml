@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+ <group >
+   <item android:id="@+id/location"
+     android:title="Find parking lots"
+     android:icon="@drawable/active"/>
+   <item android:id="@+id/charge"
+     android:title="Charge"
+     android:icon="@drawable/active"/>
+   <item android:id="@+id/management"
+     android:title="Management"
+     android:icon="@drawable/active"/>
+ </group>
+</menu>

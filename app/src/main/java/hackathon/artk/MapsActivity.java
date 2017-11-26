@@ -6,24 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import hackathon.artk.model.LatLngObj;
 import hackathon.artk.model.ModelParkings;
-import hackathon.artk.model.ParkingObject;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -57,35 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("parking");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                ModelParkings modelParkings = dataSnapshot.getValue(ModelParkings.class);
-                Log.d("Get data success", "Value is: " + dataSnapshot);
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Log.d("Get object success", data.toString());
-                    ParkingObject parkingObject = data.getValue(ParkingObject.class);
-                    LatLng sydney = new LatLng(parkingObject.getLat(), parkingObject.getLng());
-                    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "
-                            + parkingObject.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Get data fail", "Failed to read value.", error.toException());
-            }
-        });
 
         // circle settings
         int radiusM = 150; // your radius in meters

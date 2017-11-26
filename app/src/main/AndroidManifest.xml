@@ -12,10 +12,10 @@
   <uses-permission android:name="android.permission.INTERNET"/>
 
   <application
-    android:name=".ARTKApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
+    android:name=".ARTKApplication"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
@@ -30,25 +30,32 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
 
-
     <meta-data
       android:name="com.google.android.geo.API_KEY"
       android:value="@string/google_maps_key"/>
     <meta-data
-        android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
+      android:name="com.google.android.gms.version"
+      android:value="@integer/google_play_services_version"/>
+
     <activity
       android:label="@string/title_activity_maps"
       android:name=".MapsActivity">
-
     </activity>
-    <activity android:name=".view.MapActivity"
-      android:label="Demo">
+    <activity
+      android:label="ARTK"
+      android:name=".view.MapActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
+    </activity>
+    <activity
+      android:label="@string/title_activity_navigation"
+      android:name=".view.Navigation"
+      android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+    <activity android:name=".view.StreamActivity">
     </activity>
   </application>
 

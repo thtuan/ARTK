@@ -1,7 +1,12 @@
 package hackathon.artk.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -12,9 +17,10 @@ import hackathon.artk.R;
  * ------------------------------
  */
 
-public abstract class BaseMapActivity extends FragmentActivity implements OnMapReadyCallback {
+public abstract class BaseMapActivity extends FragmentActivity implements OnMapReadyCallback,
+    OnNavigationItemSelectedListener {
   private GoogleMap mMap;
-
+  private DrawerLayout drawerLayout;
   protected int getLayoutId() {
     return R.layout.activity_maps;
   }
@@ -23,6 +29,7 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getLayoutId());
+    drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     setUpMap();
   }
 
@@ -52,5 +59,25 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
 
   protected GoogleMap getMap() {
     return mMap;
+  }
+
+  @SuppressWarnings("StatementWithEmptyBody")
+  @Override
+  public boolean onNavigationItemSelected(MenuItem item) {
+    // Handle navigation view item clicks here.
+    int id = item.getItemId();
+
+    if (id == R.id.location) {
+
+      // Handle the camera action
+    } else if (id == R.id.charge) {
+
+    } else if (id == R.id.management) {
+      Intent intent = new Intent(this, StreamActivity.class);
+      startActivity(intent);
+    }
+
+    drawerLayout.closeDrawer(GravityCompat.START);
+    return true;
   }
 }
