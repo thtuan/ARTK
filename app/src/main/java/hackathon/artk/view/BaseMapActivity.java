@@ -81,7 +81,7 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
       Intent intent = new Intent(this, DecoderActivity.class);
       startActivity(intent);
     } else if (id == R.id.management) {
-      Intent intent = new Intent(this, StreamActivity.class);
+      Intent intent = new Intent(this, ManagementActivity.class);
       startActivity(intent);
     }
 

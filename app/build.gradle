@@ -32,8 +32,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':library')
+    compile 'com.android.support:design:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile project(':qrcodereaderview')
     compile 'com.android.support:multidex:1.0.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android.gms:play-services-maps:11.6.0'
     compile 'com.github.aminyazdanpanah:google-maps-3D-pie-chart-marker-clustering-java:v1.2'
@@ -41,20 +44,8 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.opentok.android:opentok-android-sdk:2.12.0'
     compile 'pub.devrel:easypermissions:0.4.0'
     compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3'
-    compile 'com.android.support:design:26.1.0'
     testCompile 'junit:junit:4.12'
-    compile project(':qrcodereaderview')
 }
-//coveralls {
-//    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
-//}
-//
-//tasks.coveralls {
-//    dependsOn 'connectedAndroidTest'
-//    onlyIf { System.env.'CI' }
-//}
-apply plugin: 'com.google.gms.google-services'

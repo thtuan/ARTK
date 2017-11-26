@@ -1,15 +1,12 @@
 package hackathon.artk.view;
 
 import android.Manifest;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.FrameLayout;
-import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
-import com.opentok.android.Publisher;
 import com.opentok.android.PublisherKit;
 import com.opentok.android.Session;
 import com.opentok.android.Stream;
@@ -27,7 +24,6 @@ public class StreamActivity extends AppCompatActivity implements EasyPermissions
   private static final int RC_VIDEO_APP_PERM = 124;
   private static final String LOG_TAG = StreamActivity.class.getSimpleName();
   private Session mSession;
-  private Publisher mPublisher;
   private Subscriber mSubscriber;
 
   private FrameLayout mPublisherViewContainer;
@@ -37,7 +33,6 @@ public class StreamActivity extends AppCompatActivity implements EasyPermissions
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_stream);
     requestPermissions();
-
   }
 
 
@@ -96,19 +91,19 @@ public class StreamActivity extends AppCompatActivity implements EasyPermissions
     Log.i(LOG_TAG, "Session Connected");
     Log.d(LOG_TAG, "onConnected: Connected to session: "+session.getSessionId());
 
-    // initialize Publisher and set this object to listen to Publisher events
-    mPublisher = new Publisher.Builder(this).build();
-    mPublisher.setPublisherListener(this);
-
-    // set publisher video style to fill view
-    mPublisher.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
-        BaseVideoRenderer.STYLE_VIDEO_FILL);
-    mPublisherViewContainer.addView(mPublisher.getView());
-    if (mPublisher.getView() instanceof GLSurfaceView) {
-      ((GLSurfaceView) mPublisher.getView()).setZOrderOnTop(true);
-    }
-
-    mSession.publish(mPublisher);
+//    // initialize Publisher and set this object to listen to Publisher events
+//    mPublisher = new Publisher.Builder(this).build();
+//    mPublisher.setPublisherListener(this);
+//
+//    // set publisher video style to fill view
+//    mPublisher.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
+//        BaseVideoRenderer.STYLE_VIDEO_FILL);
+//    mPublisherViewContainer.addView(mPublisher.getView());
+//    if (mPublisher.getView() instanceof GLSurfaceView) {
+//      ((GLSurfaceView) mPublisher.getView()).setZOrderOnTop(true);
+//    }
+//
+//    mSession.publish(mPublisher);
   }
 
   @Override
@@ -121,6 +116,7 @@ public class StreamActivity extends AppCompatActivity implements EasyPermissions
     if (mSubscriber == null) {
       mSubscriber = new Subscriber.Builder(this, stream).build();
       mSession.subscribe(mSubscriber);
+
       mSubscriberViewContainer.addView(mSubscriber.getView());
     }
     Log.i(LOG_TAG, "Stream Received");
