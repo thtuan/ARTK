@@ -47,6 +47,7 @@ dependencies {
     compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.3'
     compile 'com.android.support:design:26.1.0'
     testCompile 'junit:junit:4.12'
+    compile project(':qrcodereaderview')
 }
 //coveralls {
 //    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
