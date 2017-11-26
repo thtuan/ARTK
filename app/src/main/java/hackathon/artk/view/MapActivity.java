@@ -1,7 +1,6 @@
 package hackathon.artk.view;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.aminyazdanpanah.piechart.BarChart;
 import com.aminyazdanpanah.piechart.GetViewBarChart;
 import com.aminyazdanpanah.piechart.GetViewPieChart;
@@ -24,10 +24,12 @@ import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
-import hackathon.artk.R;
-import hackathon.artk.model.Asset;
+
 import java.lang.reflect.Field;
 import java.util.Random;
+
+import hackathon.artk.R;
+import hackathon.artk.model.Asset;
 
 /**
  * Created by thtuan on 11/25/17.
@@ -234,17 +236,19 @@ public class MapActivity extends BaseMapActivity implements ClusterManager.OnClu
   }
 
   public void info(View v) {
-    AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
-
-        .setTitle("About")
-        .setMessage("The app was created by Amin Yazdanpanah \n Please share your idea about this app to my website \n http://www.aminyazdanpanah.com")
-        .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-          }
-        })
-        .create();
-    myQuittingDialogBox.show();
+    Intent i = new Intent(this,DecoderActivity.class);
+    startActivity(i);
+//    AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+//
+//        .setTitle("About")
+//        .setMessage("The app was created by Amin Yazdanpanah \n Please share your idea about this app to my website \n http://www.aminyazdanpanah.com")
+//        .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+//          public void onClick(DialogInterface dialog, int which) {
+//            dialog.dismiss();
+//          }
+//        })
+//        .create();
+//    myQuittingDialogBox.show();
   }
 
 }
